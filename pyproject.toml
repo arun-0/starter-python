@@ -1,0 +1,52 @@
+[project]
+name = "python-project"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = []
+
+[project.scripts]
+python-project = "python_project:main"	# This gives us: "uv run python-project" which invokes: "python_project.main()"
+
+[dependency-groups]
+# Version policy: these bounds decide how far `uv lock --upgrade` may move.
+# uv.lock pins exact versions; widen a bound deliberately, then re-lock.
+dev = [
+    "pyright>=1.1",      # pyright never leaves 1.1.x, so only a floor is meaningful
+    "pytest>=9,<10",
+    "ruff>=0.16,<0.17",  # ruff is 0.x: minor bumps change rules, so cap the minor
+]
+
+[build-system]
+requires = ["uv_build>=0.12.10,<0.13"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = [
+    "tests",
+]
+
+[tool.ruff]
+target-version = "py314"
+line-length = 88
+unsafe-fixes = false
+
+[tool.ruff.lint]
+extend-select = [
+    "I",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+
+[tool.pyright]
+include = [
+    "src",
+    "tests",
+]
+pythonVersion = "3.14"
+typeCheckingMode = "basic"

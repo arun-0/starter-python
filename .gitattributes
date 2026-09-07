@@ -1,0 +1,7 @@
+# Let Git identify text versus binary files, and use LF for text files.
+* text=auto eol=lf
+
+# Windows command scripts should retain CRLF.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf

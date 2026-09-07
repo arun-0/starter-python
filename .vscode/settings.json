@@ -1,0 +1,33 @@
+{
+    "files.eol": "\n",
+    "[bat]": { "files.eol": "\r\n" },
+    "[powershell]": { "files.eol": "\r\n" },
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 20000,
+
+    "python-envs.workspaceSearchPaths": [
+        "./.venv"
+    ],
+
+    // Enables Pytest & prevents the unittest integration from competing with it.
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+
+    // pyproject.toml > competing Ruff settings inside VS Code
+    "ruff.configurationPreference": "filesystemFirst",
+	
+    // Makes the extension look for Ruff in the selected .venv first
+    "ruff.importStrategy": "fromEnvironment", 
+
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": true,
+        "editor.rulers": [
+            88
+        ],
+        "editor.codeActionsOnSave": {
+            "source.fixAll.ruff": "explicit",
+            "source.organizeImports.ruff": "explicit"
+        }
+    }
+}
